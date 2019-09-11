@@ -132,7 +132,7 @@
           },
           "configurations": {
             "docker": {
-              "browserTarget": "turing:build:docker",
+              "browserTarget": "turing-shop:build:docker",
               "host": "0.0.0.0",
               "publicHost": "local.turing.com"
             },
@@ -143,7 +143,7 @@
               "browserTarget": "turing-shop:build:production"
             },
             "test": {
-              "browserTarget": "turing:build:test",
+              "browserTarget": "turing-shop:build:test",
               "host": "0.0.0.0",
               "disableHostCheck": true
             }
