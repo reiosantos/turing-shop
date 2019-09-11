@@ -1,0 +1,93 @@
+//*** Images ***/
+
+//*===== Variables and functions ==============================================*/
+
+//* Directory with the images */
+$images-dir: '/dashboard/assets/images/';
+
+//* Function to easily create a URL of an image */
+@function image-url($path) {
+  @return url($images-dir + $path);
+}
+
+//*===== Images URLS ==========================================================*/
+
+//*** Voyage Control logo ***/
+$vc-logo-white: image-url('vc-logo-white-300px.png');
+
+//*** Icons ***/
+
+//* Sidebar items */
+$icon-analytics-white: image-url('analytics-white-50px.png');
+$icon-capacity-white: image-url('capacity-white-50px.png');
+$icon-complaints-white: image-url('complaints-white-50px.png');
+$icon-day-white: image-url('day-white-50px.png');
+$icon-environmental-white: image-url('environmental-white-50px.png');
+$icon-journeys-white: image-url('journeys-white-50px.png');
+$icon-list-white: image-url('list-white-50px.png');
+$icon-month-white: image-url('month-white-50px.png');
+$icon-punctuality-white: image-url('punctuality-white-50px.png');
+$icon-tracking-white: image-url('tracking-white-50px.png');
+$icon-newbooking-white: image-url('newbooking-white-50px.png');
+$icon-user-white: image-url('user-white-50px.png');
+$icon-settings-white: image-url('settings-white-50px.png');
+$icon-driver-white: image-url('driver-white-50px.png');
+$icon-vehicle-white: image-url('vehicle-white-50px.png');
+$icon-form-white: image-url('form-white-50px.png');
+$icon-events-white: image-url('events-white-50px.png');
+$icon-management-white: image-url('control-white-50px.png');
+$icon-integration-white: image-url('integration-white-50px.png');
+$icon-users-white: image-url('users-white-50px.png');
+$icon-charges-white: image-url('money-white-50px.png');
+$icon-calendar-white: image-url('calendar-white-50px.png');
+$icon-container-white: image-url('container-white-50px.png');
+$icon-access-points-units: image-url('access-points-units-white-50px.png');
+$icon-displayscreen-white: image-url('display-screen-50px.png');
+$icon-eventcapacity-white: image-url('event-capacity-white-50px.png');
+$icon-edit-welcome-screen: image-url('welcome-screen-50px.png');
+$icon-legal-white: image-url('legal-white.png');
+$icon-group-permissions-white: image-url('users-white-50px.png');
+$icon-logo-uploading: image-url('settings-white-50px.png');
+$icon-booking-settings: image-url('booking-settings-white-50px.png');
+$icon-resource-management: image-url('crane-white-50px.png');
+
+//* Booking features */
+$icon-forklift: image-url('forklift-50px.png');
+$icon-lift: image-url('lift-50px.png');
+$icon-porter: image-url('porter-50px.png');
+
+//* Booking actions */
+$icon-approve: image-url('approve-50px.png');
+$icon-checkin: image-url('checkin-50px.png');
+$icon-checkout: image-url('checkout-50px.png');
+$icon-decline: image-url('decline-50px.png');
+$icon-delete: image-url('delete-50px.png');
+$icon-report: image-url('report-50px.png');
+$icon-sms: image-url('sms-50px.png');
+$icon-charge: image-url('money-black-50px.png');
+$icon-refund: image-url('money-reverse-black-50px.png');
+
+//* Bookings Inquiry Feature */
+$icon-bookings: image-url('books-stack-white.png');
+$icon-landing-bill: image-url('bill-white.png');
+$icon-container-inquiry: image-url('inquiry-white.png');
+
+//* Other */
+$icon-download: image-url('download-50px.png');
+$icon-upload: image-url('upload-50px.png');
+$icon-filter: image-url('filter-100px.png');
+$icon-history-white: image-url('history-white-50px.png');
+$icon-info: image-url('info-50px.png');
+$icon-live-white: image-url('live-white-50px.png');
+$icon-logout-white: image-url('logout-white-50px.png');
+$icon-menu-white: image-url('menu-white-50px.png');
+$icon-more-filters: image-url('more-filters-50px.png');
+$icon-more-filters-activated: image-url('more-filters-50px-activated.png');
+$icon-select-arrow: image-url('select-arrow-14px.png');
+$icon-undo: image-url('undo-50px.png');
+$icon-print: image-url('print-50px.png');
+$icon-powered-by-stripe: image-url('powered_by_stripe.png');
+
+//* Booking Types */
+$icon-van-black: image-url('van-50px.png');
+$icon-resource-black: image-url('powered_by_stripe.png');

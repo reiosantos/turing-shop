@@ -1,0 +1,80 @@
+@import '~@angular/material/theming';
+@import 'typography';
+
+$vc-default: (
+  50: #8ea4b8,
+  100: #7590a9,
+  200: #5e7b97,
+  300: #4f677d,
+  400: #3f5264,
+  500: #31404e,
+  600: #27333f,
+  700: #1f2932,
+  800: #181f26,
+  900: #080a0d,
+  A100: #829ab0,
+  A200: #6886a1,
+  A400: #56718a,
+  A700: #475d71,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text,
+  )
+);
+
+$vc-primary: mat-palette($mat-blue-grey, 800);
+$vc-accent: mat-palette($mat-green, 300);
+$vc-warn: mat-palette($mat-orange, 700);
+$vc-yellow: mat-palette($mat-yellow, 500);
+$vc-error: mat-palette($mat-red, 300);
+
+$white: #fff;
+$gray: #808fa3;
+$green-light: #bbe8d1;
+$green-border: #5db77d;
+
+$primary: mat-color($vc-primary);
+$accent: mat-color($vc-accent);
+$warn: mat-color($vc-warn);
+$yellow: mat-color($vc-yellow);
+$error: mat-color($vc-error);
+
+//$primary: #31404e;
+//$dark: #091a26;
+//$light: #5b6b7a;
+
+$logout-icon: #ff5359;
+$confirm: #3359bd;
+$cancel: #ff5359;
+
+$action-buttons-color: rgba(128, 143, 163, .11);
+$action-buttons-background: #e1e6fa;
+$backdrop-background: rgba($color: #4f4f4f, $alpha: .8);
+
+$blue-highlight: #337ab7;
+$vc-highlight: #6c9;
+$vc-highlight-darker: rgb(79, 196, 138);
+$venue-admin-button-background: #f5f5f5;
+
+$navy-blue-menu: #31404e;
+$teal-details: #005f5f;
+$teal-details-darker: #014c4c;
+
+$vc-secondary-color: $teal-details;
+$vc-secondary-color-darker: $teal-details-darker;
+
+$vc-dark-element: $navy-blue-menu;
+$vc-bright-element: $vc-highlight;
+$vc-bright-element-darker: $vc-highlight-darker;

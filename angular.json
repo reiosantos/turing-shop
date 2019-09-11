@@ -5,10 +5,14 @@
   "projects": {
     "turing-shop": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "vc",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -18,33 +22,66 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "baseHref": "/dashboard/",
+            "deployUrl": "/dashboard/",
+            "optimization": true,
+            "outputHashing": "all",
+            "sourceMap": false,
+            "extractCss": true,
+            "namedChunks": false,
+            "aot": true,
+            "extractLicenses": true,
+            "vendorChunk": false,
+            "buildOptimizer": true,
+            "statsJson": true,
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "6kb",
+                "maximumError": "10kb"
+              }
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
           "configurations": {
-            "production": {
+            "docker":{
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "with": "src/environments/environment.docker.ts"
                 }
               ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
+              "optimization": false,
+              "outputHashing": "none",
+              "sourceMap": true,
               "extractCss": true,
-              "namedChunks": false,
+              "namedChunks": true,
               "aot": true,
-              "extractLicenses": true,
+              "extractLicenses": false,
+              "showCircularDependencies": true,
+              "statsJson": false,
               "vendorChunk": false,
-              "buildOptimizer": true,
+              "buildOptimizer": false
+            },
+            "staging":{
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -52,9 +89,37 @@
                   "maximumError": "5mb"
                 },
                 {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "type": "anyScript",
+                  "maximumWarning": "1mb",
+                  "maximumError": "4mb"
+                }
+              ]
+            },
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "3mb",
+                  "maximumError": "6mb"
+                },
+                {
+                  "type": "anyScript",
+                  "maximumWarning": "2mb",
+                  "maximumError": "4mb"
+                }
+              ]
+            },
+            "test": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.test.ts"
                 }
               ]
             }
@@ -66,8 +131,21 @@
             "browserTarget": "turing-shop:build"
           },
           "configurations": {
+            "docker": {
+              "browserTarget": "turing:build:docker",
+              "host": "0.0.0.0",
+              "publicHost": "local.turing.com"
+            },
+            "staging": {
+              "browserTarget": "turing-shop:build:staging"
+            },
             "production": {
               "browserTarget": "turing-shop:build:production"
+            },
+            "test": {
+              "browserTarget": "turing:build:test",
+              "host": "0.0.0.0",
+              "disableHostCheck": true
             }
           }
         },
@@ -84,12 +162,13 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
+            "codeCoverage": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
