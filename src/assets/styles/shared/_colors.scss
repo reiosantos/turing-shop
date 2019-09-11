@@ -1,0 +1,36 @@
+//*** Colors values ***/
+
+//* Text */
+$text-color-primary: #333;
+$text-color-primary-light: #eee;   //* For dark backgrounds */
+
+//* Backgrounds */
+$background-color-primary: #fff;
+$background-color-secondary: #ddd;
+
+//* Borders */
+$border-color: #999;
+$separator-color: #ccc;   //* Between sections */
+
+//* Navigation bar */
+$navigation-bar-background-color: #31404e;
+$navigation-bar-background-color-selected: #222e38;
+
+//* Booking statuses */
+$status-approval-background-color: #fef287;
+$status-approval-border-color: #dcbd23;
+$status-checked-in-background-color: #bbe8d1;
+$status-checked-in-border-color: #00882b;
+$status-checked-out-background-color: #aac1ff;
+$status-checked-out-border-color: #0365c0;
+$status-no-status-background-color: #fff;
+$status-no-status-border-color: #000;
+$status-refused-background-color: #ff838f;
+$status-refused-border-color: #ec5d57;
+$status-scheduled-border-color: #a6aaa9;
+$status-scheduled-background-color: #eef0f2;
+
+$eta-background-color: #51a7f9;
+$eta-border-color: #0365c0;
+
+$highlight-box-shadow: rgba(0, 0, 0, .5);

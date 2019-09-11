@@ -7,6 +7,8 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
+    "strictNullChecks": false,
+    "noImplicitReturns": true,
     "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
@@ -17,10 +19,22 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@turing/*": [
+        "src/app/*",
+        "src/environments/*"
+      ]
+    },
+    "resolveJsonModule": true
   },
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts"
+  ],
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
+    "strictInjectionParameters": true,
+    "enableIvy": false
   }
 }
