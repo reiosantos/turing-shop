@@ -9,6 +9,10 @@ body {
   margin: 0;
 }
 
+body, * {
+  width: 100%;
+}
+
 .modal-backdrop {
   background-color: $backdrop-background;
 }

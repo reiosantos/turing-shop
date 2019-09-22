@@ -1,7 +1,7 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { VcAuthToken } from '@turing/shared/interfaces/vc-auth-token';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {VcAuthToken} from '@turing/shared/interfaces/vc-auth-token';
 
 /**
  * @ngdoc service
@@ -21,7 +21,7 @@ export class JwtInterceptor implements HttpInterceptor {
     const doNotSendTokenToThisUrls = ['/api/jwt/verify/', '/api/jwt/getLoginUrl/'];
 
     if (this.authToken.getToken() && doNotSendTokenToThisUrls.indexOf(reqClone.url) === -1) {
-      reqClone.headers.set('Authorization', `JWT ${this.authToken.getToken()}`);
+      reqClone.headers.set('USER-KEY', this.authToken.getToken());
     }
 
     return next.handle(reqClone);

@@ -1,0 +1,25 @@
+<!--suppress JSUnresolvedVariable -->
+<mat-sidenav-container>
+  <mat-sidenav-content>
+    <mat-progress-bar *ngIf="loading" mode="determinate" [value]="value"></mat-progress-bar>
+
+    <vc-toolbar></vc-toolbar>
+
+    <div class="mat-sidenav-content-div">
+
+      <div fxLayout="row wrap" class="mat-sidenav-content-div-main" fxLayout.lt-md="column"
+           fxLayoutAlign="stretch start" fxFlex>
+
+        <div fxFlex.gt-md="20%" fxFlex.lt-md="100%">
+          <vc-filter-panel></vc-filter-panel>
+        </div>
+
+        <div fxFlex.gt-md="80%" fxFlex.lt-md="100%">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
