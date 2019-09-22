@@ -1,8 +1,8 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {VcProductClient} from '@turing/shared/interfaces/vc-product-client';
-import {VcProduct} from '@turing/shared/models/vc-product';
-import {ToCamelCasePipe} from '@turing/shared/pipes/to-camel-case/to-camel-case.pipe';
-import {withDestroy} from '@turing/core/mixins/with-destroy';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { VcProductClient } from '@turing/shared/interfaces/vc-product-client';
+import { VcProduct } from '@turing/shared/models/vc-product';
+import { ToCamelCasePipe } from '@turing/shared/pipes/to-camel-case/to-camel-case.pipe';
+import { withDestroy } from '@turing/core/mixins/with-destroy';
 
 @Component({
   selector: 'vc-product-panel',

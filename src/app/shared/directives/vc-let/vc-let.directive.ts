@@ -1,14 +1,14 @@
-import {Directive, Input, TemplateRef, ViewContainerRef} from '@angular/core';
+import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
 interface LetContext<T> {
   vcLet: T | null;
 }
 
 @Directive({
-             selector: '[vcLet]'
-           })
+  selector: '[vcLet]'
+})
 export class VcLetDirective<T> {
-  private letContext: LetContext<T> = {vcLet: null};
+  private letContext: LetContext<T> = { vcLet: null };
 
   constructor(
     private viewContainerRef: ViewContainerRef,

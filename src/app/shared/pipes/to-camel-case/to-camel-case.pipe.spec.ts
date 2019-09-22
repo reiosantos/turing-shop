@@ -1,4 +1,4 @@
-import {ToCamelCasePipe} from './to-camel-case.pipe';
+import { ToCamelCasePipe } from './to-camel-case.pipe';
 
 describe('ToCamelCasePipe', () => {
   it('create an instance', () => {

@@ -1,4 +1,4 @@
-import {environment} from '@turing/environment';
+import { environment } from '@turing/environment';
 
 export class VcUrls {
   private static currentBaseUrl: string = environment.baseUrl;

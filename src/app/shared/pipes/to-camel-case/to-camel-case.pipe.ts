@@ -1,8 +1,8 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-        name: 'toCamelCase'
-      })
+  name: 'toCamelCase'
+})
 export class ToCamelCasePipe implements PipeTransform {
 
   private replace = (value: string) => {

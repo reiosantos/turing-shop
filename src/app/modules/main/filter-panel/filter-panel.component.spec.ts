@@ -1,6 +1,6 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {FilterPanelComponent} from './filter-panel.component';
+import { FilterPanelComponent } from './filter-panel.component';
 
 describe('FilterPanelComponent', () => {
   let component: FilterPanelComponent;
@@ -8,8 +8,8 @@ describe('FilterPanelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-                                     declarations: [FilterPanelComponent]
-                                   })
+      declarations: [FilterPanelComponent]
+    })
       .compileComponents();
   }));
 

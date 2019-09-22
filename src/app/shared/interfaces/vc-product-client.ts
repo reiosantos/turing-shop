@@ -1,7 +1,7 @@
-import {Observable, Subscription} from 'rxjs';
-import {VcProduct} from '@turing/shared/models/vc-product';
-import {VcCategory} from '@turing/shared/models/vc-category';
-import {VcDepartment} from '@turing/shared/models/vc-department';
+import { Observable, Subscription } from 'rxjs';
+import { VcProduct } from '@turing/shared/models/vc-product';
+import { VcCategory } from '@turing/shared/models/vc-category';
+import { VcDepartment } from '@turing/shared/models/vc-department';
 
 export abstract class VcProductClient {
   products$: Observable<{ count: number, rows: VcProduct[] }>;

@@ -1,5 +1,5 @@
-import {MatDrawerToggleResult, MatSidenav} from '@angular/material';
-import {PartialObserver, Subscription} from 'rxjs';
+import { MatDrawerToggleResult, MatSidenav } from '@angular/material';
+import { PartialObserver, Subscription } from 'rxjs';
 
 export abstract class VcNavMenu {
   abstract setSidenav(sidenav: MatSidenav): void;

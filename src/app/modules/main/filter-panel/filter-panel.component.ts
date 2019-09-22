@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {VcProductClient} from '@turing/shared/interfaces/vc-product-client';
+import { Component, OnInit } from '@angular/core';
+import { VcProductClient } from '@turing/shared/interfaces/vc-product-client';
 
 @Component({
-             selector: 'vc-filter-panel',
-             templateUrl: './filter-panel.component.html',
-             styleUrls: ['./filter-panel.component.scss']
-           })
+  selector: 'vc-filter-panel',
+  templateUrl: './filter-panel.component.html',
+  styleUrls: ['./filter-panel.component.scss']
+})
 export class FilterPanelComponent implements OnInit {
 
   constructor(

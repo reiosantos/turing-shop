@@ -1,12 +1,12 @@
-import {VcHttpClient} from '@turing/shared/interfaces/vc-http-client';
-import {BehaviorSubject, Observable, Subscription} from 'rxjs';
-import {VcUrls} from '@turing/core/providers/vc-urls';
-import {VcProduct} from '@turing/shared/models/vc-product';
-import {withDestroy} from '@turing/core/mixins/with-destroy';
-import {takeUntil} from 'rxjs/operators';
-import {VcCategory} from '@turing/shared/models/vc-category';
-import {VcDepartment} from '@turing/shared/models/vc-department';
-import {VcProductClient} from '@turing/shared/interfaces/vc-product-client';
+import { VcHttpClient } from '@turing/shared/interfaces/vc-http-client';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { VcUrls } from '@turing/core/providers/vc-urls';
+import { VcProduct } from '@turing/shared/models/vc-product';
+import { withDestroy } from '@turing/core/mixins/with-destroy';
+import { takeUntil } from 'rxjs/operators';
+import { VcCategory } from '@turing/shared/models/vc-category';
+import { VcDepartment } from '@turing/shared/models/vc-department';
+import { VcProductClient } from '@turing/shared/interfaces/vc-product-client';
 
 export class ProductService extends withDestroy() implements VcProductClient {
   private products: BehaviorSubject<{ count: number, rows: VcProduct[] }>
