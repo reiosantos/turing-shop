@@ -1,4 +1,15 @@
 <div fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutAlign="center center" class="product-grid">
+  <div fxFlex="100%" fxLayout="column" fxLayoutAlign="center center">
+    <mat-paginator
+      *ngIf="fetchedData"
+      color="primary"
+      [length]="pageEvent.length"
+      [pageSize]="pageEvent.pageSize"
+      [showFirstLastButtons]="true"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="onPageChange($event)">
+    </mat-paginator>
+  </div>
 
   <ng-container *ngFor="let product of convertToCamelCase((vcProductClient.products$|async))">
     <mat-card class="product-card"

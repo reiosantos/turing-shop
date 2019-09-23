@@ -8,11 +8,13 @@ export abstract class VcProductClient {
   categories$: Observable<{ count: number, rows: VcCategory[] }>;
   departments$: Observable<VcDepartment[]>;
 
-  abstract getAllProducts(): Subscription;
+  abstract getAllProducts(limit?: number, page?: number, descriptionLength?: number): Subscription;
 
   abstract getAllDepartments(): Subscription;
 
-  abstract getAllCategories(): Subscription;
+  abstract getAllCategories(
+    limit?: number, page?: number, descriptionLength?: number
+  ): Subscription;
 
   initClient(): void {
   }

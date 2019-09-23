@@ -24,8 +24,10 @@ export class ProductService extends withDestroy() implements VcProductClient {
     super();
   }
 
-  getAllProducts(): Subscription {
-    return this.vcHttpClient.get(VcUrls.getProductsUrl())
+  getAllProducts(limit = 20 , page = 0, descriptionLength = 200): Subscription {
+    const query = { limit, page, description_length: descriptionLength };
+
+    return this.vcHttpClient.get(VcUrls.getProductsUrl(query))
       .pipe(takeUntil(this.destroy$))
       .subscribe((products: { count: number, rows: VcProduct[] }) => {
         this.products.next(products);
@@ -40,8 +42,10 @@ export class ProductService extends withDestroy() implements VcProductClient {
       });
   }
 
-  getAllCategories(): Subscription {
-    return this.vcHttpClient.get(VcUrls.getCategoryUrl())
+  getAllCategories(limit = 20 , page = 0, descriptionLength = 200): Subscription {
+    const query = { limit, page, description_length: descriptionLength };
+
+    return this.vcHttpClient.get(VcUrls.getCategoryUrl(query))
       .pipe(takeUntil(this.destroy$))
       .subscribe((categories: { count: number, rows: VcCategory[] }) => {
         this.categories.next(categories);
