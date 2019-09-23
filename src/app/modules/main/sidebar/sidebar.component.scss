@@ -1,0 +1,33 @@
+@import '../../../../assets/styles/variables';
+
+mat-sidenav-container,
+mat-sidenav {
+  height: 100%;
+}
+
+button:hover,
+button:focus {
+  cursor: pointer;
+}
+
+mat-sidenav-content {
+  background: $white;
+
+  > .mat-sidenav-content-div {
+    background-color: $white;
+    box-sizing: border-box;
+    padding: 1em 3em 0;
+    height: 100%;
+
+    .mat-sidenav-content-div-main {
+      height: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  mat-sidenav-content > .mat-sidenav-content-div {
+    box-sizing: border-box;
+    padding: 1em 1em 0;
+  }
+}

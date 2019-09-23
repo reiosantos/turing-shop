@@ -1,13 +1,11 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import {
-  PageNotFoundComponent
-} from '@turing/shared/components/page-not-found/page-not-found.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {PageNotFoundComponent} from '@turing/shared/components/page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
   {
-    path: 'v1',
+    path: '',
     loadChildren: () => import('./modules/base.module').then(m => m.BaseModule)
   },
   {
@@ -19,8 +17,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    onSameUrlNavigation: 'reload',
-    preloadingStrategy: PreloadAllModules
+    onSameUrlNavigation: 'reload'
   })],
   exports: [RouterModule]
 })

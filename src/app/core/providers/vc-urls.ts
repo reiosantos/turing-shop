@@ -8,5 +8,9 @@ export class VcUrls {
   };
   static getBaseUrl = (): string => environment.baseUrl;
   static getCurrentBaseUrl = (): string => VcUrls.currentBaseUrl;
-  static getLoginUrl = (): string => `${VcUrls.getBaseUrl}jwt/verify/`;
+  static getLoginUrl = (): string => `${VcUrls.currentBaseUrl}customers/login`;
+  static getCreateAccountUrl = (): string => `${VcUrls.currentBaseUrl}customers`;
+  static getProductsUrl = (): string => `${VcUrls.currentBaseUrl}products`;
+  static getDepartmentsUrl = (): string => `${VcUrls.currentBaseUrl}departments`;
+  static getCategoryUrl = (): string => `${VcUrls.currentBaseUrl}categories`;
 }

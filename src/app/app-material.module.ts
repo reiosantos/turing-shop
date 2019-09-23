@@ -1,24 +1,26 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {
+  MatAutocompleteModule,
+  MatBadgeModule,
+  MatButtonModule,
+  MatCardModule,
+  MatDatepickerModule,
+  MatDialogModule,
   MatExpansionModule,
+  MatGridListModule,
   MatIconModule,
+  MatInputModule,
   MatListModule,
   MatMenuModule,
-  MatSidenavModule,
-  MatToolbarModule,
-  MatDialogModule,
-  MatCardModule,
-  MatSelectModule,
-  MatButtonModule,
-  MatTabsModule,
-  MatBadgeModule,
-  MatGridListModule,
   MatOptionModule,
-  MatAutocompleteModule,
   MatProgressBarModule,
-  MatDatepickerModule, MatInputModule
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatTabsModule,
+  MatToolbarModule
 } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   imports: [
@@ -41,7 +43,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatGridListModule,
     MatAutocompleteModule,
     MatProgressBarModule,
-    MatInputModule
+    MatInputModule,
+    MatRippleModule
   ],
   exports: [
     MatToolbarModule,
@@ -62,7 +65,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatGridListModule,
     MatAutocompleteModule,
     MatProgressBarModule,
-    MatInputModule
+    MatInputModule,
+    MatRippleModule
   ]
 })
 export class AppMaterialModule {}

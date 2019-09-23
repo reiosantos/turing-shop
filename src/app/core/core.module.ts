@@ -11,6 +11,8 @@ import { VcHttpClient } from '@turing/shared/interfaces/vc-http-client';
 import { HttpWrapperService } from '@turing/core/http/http-wrapper.service';
 import { VcAlert } from '@turing/shared/interfaces/vc-alert';
 import { AlertService } from '@turing/core/services/alert/alert.service';
+import { ProductService } from '@turing/core/services/products/product.service';
+import { VcProductClient } from '@turing/shared/interfaces/vc-product-client';
 
 @NgModule({
   declarations: [],
@@ -36,7 +38,8 @@ export class CoreModule {
         { provide: VcLogger, useClass: LoggerService },
         { provide: VcLoggerPublisher, useClass: LoggerPublisherService },
         { provide: VcHttpClient, useClass: HttpWrapperService },
-        { provide: VcAlert, useClass: AlertService }
+        { provide: VcAlert, useClass: AlertService },
+        { provide: VcProductClient, useClass: ProductService },
       ]
     };
   }

@@ -1,0 +1,66 @@
+@import "~src/assets/styles/variables";
+
+.product-grid {
+  padding-right: 0;
+
+  .product-card {
+    height: 350px;
+    margin: 1em;
+    border: 1px solid #E0E8EA;
+    border-radius: 13px;
+    background-color: $white;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.active {
+      border: 1px solid #3359DB;
+
+      .transparent-background {
+        background-color: rgba(51, 89, 219, 0.72);
+      }
+    }
+
+    @media screen and (max-width: 1280px) {
+      & {
+        margin: 1em;
+      }
+    }
+
+    .mat-card-content {
+      flex-grow: 1;
+      background-color: rgba(224, 232, 234, 0.18);
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+
+    .mat-card-footer {
+      margin: 0 auto .5em;
+    }
+
+    .footer-button {
+      display: flex;
+      justify-items: center;
+      align-items: center;
+    }
+
+    .footer-text {
+      span {
+        display: block;
+        color: $primary;
+        font-weight: bold;
+        margin: .5em auto;
+
+        &.current-price {
+          color: $error;
+        }
+
+        &.discounted-price {
+          text-decoration: line-through;
+          color: $gray;
+        }
+      }
+    }
+  }
+}

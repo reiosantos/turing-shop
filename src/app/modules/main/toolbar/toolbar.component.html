@@ -1,0 +1,29 @@
+<mat-toolbar class="vc-toolbar">
+  <mat-toolbar-row>
+    <div class="tool-bar-items">
+      <span class="header-title"> Turing Shop </span>
+    </div>
+
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+      <div class="tool-bar-button" fxLayout="row" fxLayoutGap="20px">
+        <ng-template *ngIf="!user || !user.email; then loginTlt; else logoutTpl"></ng-template>
+
+        <ng-template #loginTlt>
+          <a class="action-button login" matRippleRadius="50" mat-raised-button matRipple
+             (click)="showLoginModal()">
+            Login
+          </a>
+        </ng-template>
+
+        <ng-template #logoutTpl>
+          <a class="action-button logout" matRippleRadius="50" mat-flat-button matRipple
+             (click)="showLogoutModal()">
+            Logout -> {{ user.name }}
+            <span class="right-arrow-icon-wrapper"></span>
+          </a>
+        </ng-template>
+
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
