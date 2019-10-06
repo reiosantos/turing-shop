@@ -3,6 +3,20 @@ import { environment } from '@turing/environment';
 export class VcUrls {
   private static currentBaseUrl: string = environment.baseUrl;
 
+  private static formatQuery = (query: {}) => {
+    let queryParams = '?';
+    const keys = Object.keys(query);
+    const length = keys.length;
+    keys.forEach((key, index) => {
+      let appendAnd = true;
+      if ((length - 1) === index) {
+        appendAnd = false;
+      }
+      queryParams += `${key}=${query[key]}${ appendAnd ? '&' : ''}`;
+    });
+    return queryParams;
+  };
+
   static setCurrentBaseUrl = (url: string): void => {
     VcUrls.currentBaseUrl = url;
   };
@@ -10,7 +24,16 @@ export class VcUrls {
   static getCurrentBaseUrl = (): string => VcUrls.currentBaseUrl;
   static getLoginUrl = (): string => `${VcUrls.currentBaseUrl}customers/login`;
   static getCreateAccountUrl = (): string => `${VcUrls.currentBaseUrl}customers`;
-  static getProductsUrl = (): string => `${VcUrls.currentBaseUrl}products`;
+
+  static getProductDetailUrl = (id): string => `${VcUrls.currentBaseUrl}products/${id}`;
+  static getAddItemUrl = (): string => `${VcUrls.currentBaseUrl}shoppingcart/add`;
+  static generateCartIdUrl = (): string => `${VcUrls.currentBaseUrl}shoppingcart/generateUniqueId`;
+
+  static getProductsUrl = (query?: {}): string =>
+    `${VcUrls.currentBaseUrl}products${VcUrls.formatQuery(query)}`;
+
   static getDepartmentsUrl = (): string => `${VcUrls.currentBaseUrl}departments`;
-  static getCategoryUrl = (): string => `${VcUrls.currentBaseUrl}categories`;
+
+  static getCategoryUrl = (query?: {}): string =>
+    `${VcUrls.currentBaseUrl}categories${VcUrls.formatQuery(query)}`;
 }

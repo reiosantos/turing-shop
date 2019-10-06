@@ -3,6 +3,33 @@
 .product-grid {
   padding-right: 0;
 
+  ::ng-deep {
+    .mat-paginator {
+      background-color: transparent;
+      color: $primary;
+      font-weight: bold;
+      font-size: inherit;
+      .mat-paginator-container {
+        flex-wrap: nowrap;
+        * {
+          color: $primary;
+        }
+        .mat-select {
+          border: .5px solid $primary;
+          padding: .5em;
+          border-radius: 2px;
+        }
+        button {
+          &:disabled {
+            * {
+              color: lightgrey;
+            }
+          }
+        }
+      }
+    }
+  }
+
   .product-card {
     height: 350px;
     margin: 1em;
@@ -30,6 +57,7 @@
 
     .mat-card-content {
       flex-grow: 1;
+      width: 100%;
       background-color: rgba(224, 232, 234, 0.18);
       background-size: 100% 100%;
       background-repeat: no-repeat;
@@ -37,6 +65,7 @@
 
     .mat-card-footer {
       margin: 0 auto .5em;
+      width: 100%;
     }
 
     .footer-button {
@@ -52,13 +81,12 @@
         font-weight: bold;
         margin: .5em auto;
 
-        &.current-price {
+        &.price {
           color: $error;
         }
-
-        &.discounted-price {
-          text-decoration: line-through;
+        &.strike {
           color: $gray;
+          text-decoration: line-through;
         }
       }
     }

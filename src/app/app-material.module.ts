@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -12,7 +12,7 @@ import {
   MatInputModule,
   MatListModule,
   MatMenuModule,
-  MatOptionModule,
+  MatOptionModule, MatPaginatorModule,
   MatProgressBarModule,
   MatRippleModule,
   MatSelectModule,
@@ -20,7 +20,7 @@ import {
   MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
@@ -44,7 +44,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatAutocompleteModule,
     MatProgressBarModule,
     MatInputModule,
-    MatRippleModule
+    MatRippleModule,
+    MatPaginatorModule
   ],
   exports: [
     MatToolbarModule,
@@ -66,7 +67,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatAutocompleteModule,
     MatProgressBarModule,
     MatInputModule,
-    MatRippleModule
+    MatRippleModule,
+    MatPaginatorModule
   ]
 })
 export class AppMaterialModule {}

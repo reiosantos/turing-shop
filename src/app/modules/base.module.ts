@@ -8,11 +8,23 @@ import { ToolbarComponent } from '@turing/modules/main/toolbar/toolbar.component
 import { SidebarComponent } from '@turing/modules/main/sidebar/sidebar.component';
 import { FilterPanelComponent } from './main/filter-panel/filter-panel.component';
 import { ProductPanelComponent } from './main/product-panel/product-panel.component';
+import { ProductDetailComponent } from './main/product-detail/product-detail.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [ToolbarComponent, SidebarComponent, FilterPanelComponent, ProductPanelComponent],
+  entryComponents: [
+    ProductDetailComponent
+  ],
+  declarations: [
+    ToolbarComponent,
+    SidebarComponent,
+    FilterPanelComponent,
+    ProductPanelComponent,
+    ProductDetailComponent
+  ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule,
     AppMaterialModule,
     SharedModule,
