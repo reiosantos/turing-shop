@@ -1,11 +1,13 @@
 @import "~src/assets/styles/variables";
 
 .filter-card {
-  width: 240px;
-  height: 250px;
+  min-height: 250px;
+  height: auto;
   border: 1px solid #E0E8EA;
-  border-radius: 13px;
+  border-radius: 5px;
   background-color: rgba(224, 232, 234, 0.18);
+  background: $primary;
+  color: $white;
   background-size: 100% 100%;
   background-repeat: no-repeat;
   overflow: hidden;
@@ -16,12 +18,25 @@
 
   &.active {
     border: 1px solid #3359DB;
-
     .transparent-background {
       background-color: rgba(51, 89, 219, 0.72);
     }
   }
 
+  input {
+    border: .5px solid $white;
+    border-radius: 2px;
+    padding: 2px;
+    color: $white;
+    &::placeholder,
+    &::-webkit-input-placeholder,
+    &::-moz-placeholder {
+      color: $white;
+    }
+  }
+  button {
+    border-radius: 2px;
+  }
   @media screen and (max-width: 960px) {
     & {
       width: 100%;
@@ -39,11 +54,23 @@
   color: $primary;
   ul {
     list-style: none;
+    padding-inline-start: 0;
     li {
       font-weight: bold;
       padding: 2px;
       list-style: none;
       display: block;
+      word-wrap: break-spaces;
+      &.title {
+        font-weight: bold;
+        color: $white;
+        background: $primary;
+        text-align: center;
+      }
+      &:nth-child(2n):hover:not(.title):not(.no-product) {
+        background: $gray;
+        color: $white;
+      }
     }
   }
 }

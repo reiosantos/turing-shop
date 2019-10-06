@@ -12,7 +12,7 @@ export class VcUrls {
       if ((length - 1) === index) {
         appendAnd = false;
       }
-      queryParams += `${key}=${query[key]}${ appendAnd ? '&' : ''}`;
+      queryParams += `${key}=${query[key]}${appendAnd ? '&' : ''}`;
     });
     return queryParams;
   };
@@ -32,8 +32,17 @@ export class VcUrls {
   static getProductsUrl = (query?: {}): string =>
     `${VcUrls.currentBaseUrl}products${VcUrls.formatQuery(query)}`;
 
+  static getProductSearchUrl = (query?: {}): string =>
+    `${VcUrls.currentBaseUrl}products/search${VcUrls.formatQuery(query)}`;
+
   static getDepartmentsUrl = (): string => `${VcUrls.currentBaseUrl}departments`;
 
   static getCategoryUrl = (query?: {}): string =>
     `${VcUrls.currentBaseUrl}categories${VcUrls.formatQuery(query)}`;
+
+  static getInDepartmentUrl = (departmentId: number, query?: {}) =>
+    `${VcUrls.currentBaseUrl}products/inDepartment/${departmentId}${VcUrls.formatQuery(query)}`;
+
+  static getInCategoryUrl = (categoryId: number, query?: {}) =>
+    `${VcUrls.currentBaseUrl}products/inCategory/${categoryId}${VcUrls.formatQuery(query)}`;
 }

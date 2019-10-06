@@ -1,21 +1,50 @@
 
 <div fxFlex fxLayout="column">
-  <mat-card class="filter-card">
-    <mat-card-header>
-
-    </mat-card-header>
-    <mat-card-content>
-      <!--    <img matCardAvatar [src]="product.thumbnail" [attr.alt]="product.name" />-->
+  <mat-card class="filter-card mat-elevation-z1">
+    <mat-card-content fxLayout="column" fxLayoutAlign="stretch" fxFlex fxLayoutGap="40px">
+      <form [formGroup]="form" (ngSubmit)="searchTerm()" fxLayout="row">
+        <input
+          fxFlex="70%"
+          type="text"
+          matInput
+          placeholder="Search Term"
+          formControlName="search"
+          name="search"
+        />
+        <button fxFlex mat-button mat-flat-button type="submit" class="search">Search</button>
+      </form>
+      <div class="category-filter">
+        <mat-select (selectionChange)="filterByCategory($event)" placeholder="------Category------">
+          <mat-option
+            *ngFor="let category of (vcProductClient.categories$|async).rows|toCamelCase"
+            [value]="category.categoryId">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+      </div>
+      <div class="department-filter">
+        <mat-select (selectionChange)="filterByDepartment($event)" placeholder="----Department----">
+          <mat-option
+            *ngFor="let department of vcProductClient.departments$|async|toCamelCase"
+            [value]="department.departmentId">
+            {{ department.name }}
+          </mat-option>
+        </mat-select>
+      </div>
     </mat-card-content>
-
   </mat-card>
 
   <div fxFlex="100%" class="cart-items">
     <ul>
-      <li *ngFor="let product of vcProductClient.addedInCartItems$|async" class="product">
-        {{ displayText(product|toCamelCase) }} <br/>
-        {{ product.attributes }}
-      </li>
+      <li class="title">Items In Cart</li>
+      <ng-container *ngIf="(vcProductClient.addedInCartItems$|async).length > 0; else no_data">
+        <li *ngFor="let product of vcProductClient.addedInCartItems$|async" class="product">
+          {{ displayText(product|toCamelCase) }} {{ product.attributes }}
+        </li>
+      </ng-container>
+      <ng-template #no_data>
+        <li class="no-product">(0) Items in cart</li>
+      </ng-template>
     </ul>
   </div>
 </div>
