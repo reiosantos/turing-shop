@@ -28,6 +28,10 @@ export class ProductService extends withDestroy() implements VcProductClient {
   private cartId: BehaviorSubject<string> = new BehaviorSubject(null);
   cartId$: Observable<string> = this.cartId.asObservable();
 
+  lastFetchAction = 'getAllProducts';
+  lastFetchCategoryId: number;
+  lastFetchDepartmentId: number;
+
   constructor(private vcHttpClient: VcHttpClient) {
     super();
   }
@@ -36,6 +40,17 @@ export class ProductService extends withDestroy() implements VcProductClient {
     const query = { limit, page, description_length: descriptionLength };
 
     return this.vcHttpClient.get(VcUrls.getProductsUrl(query))
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((products: { count: number, rows: VcProduct[] }) => {
+        this.lastFetchAction = 'getAllProducts';
+        this.products.next(products);
+      });
+  }
+
+  searchProducts(searchTerm: string): Subscription {
+    const query = { query_string: searchTerm };
+
+    return this.vcHttpClient.get(VcUrls.getProductSearchUrl(query))
       .pipe(takeUntil(this.destroy$))
       .subscribe((products: { count: number, rows: VcProduct[] }) => {
         this.products.next(products);
@@ -85,6 +100,32 @@ export class ProductService extends withDestroy() implements VcProductClient {
       .pipe(takeUntil(this.destroy$))
       .subscribe((value) => {
         this.cartId.next(value.cart_id);
+      });
+  }
+
+  getInDepartment(
+    departmentId: number, limit = 20 , page = 0, descriptionLength = 200
+  ): Subscription {
+    const query = { limit, page, description_length: descriptionLength };
+
+    return this.vcHttpClient.get(VcUrls.getInDepartmentUrl(departmentId, query))
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((products: { count: number, rows: VcProduct[] }) => {
+        this.lastFetchAction = 'getInDepartment';
+        this.lastFetchDepartmentId = departmentId;
+        this.products.next(products);
+      });
+  }
+
+  getInCategory(categoryId: number, limit = 20 , page = 0, descriptionLength = 200): Subscription {
+    const query = { limit, page, description_length: descriptionLength };
+
+    return this.vcHttpClient.get(VcUrls.getInCategoryUrl(categoryId, query))
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((products: { count: number, rows: VcProduct[] }) => {
+        this.lastFetchAction = 'getInCategory';
+        this.lastFetchCategoryId = categoryId;
+        this.products.next(products);
       });
   }
 

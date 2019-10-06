@@ -90,7 +90,19 @@ export class ProductPanelComponent extends withDestroy() implements OnInit {
   onPageChange($event: PageEvent) {
     Object.assign(this.pageEvent, $event);
     const { pageIndex, pageSize } = $event;
-    this.vcProductClient.getAllProducts(pageSize, pageIndex);
+
+    switch (this.vcProductClient.lastFetchAction) {
+      case 'getInCategory':
+        this.vcProductClient.getInCategory(
+          this.vcProductClient.lastFetchCategoryId, pageSize, pageIndex);
+        break;
+      case 'getInDepartment':
+        this.vcProductClient.getInDepartment(
+          this.vcProductClient.lastFetchDepartmentId, pageSize, pageIndex);
+        break;
+      default:
+        this.vcProductClient.getAllProducts(pageSize, pageIndex);
+    }
   }
 
   viewDetails(product: VcProduct) {

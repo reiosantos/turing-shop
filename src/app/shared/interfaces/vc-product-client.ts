@@ -11,6 +11,9 @@ export abstract class VcProductClient {
   readonly products$: Observable<{ count: number, rows: VcProduct[] }>;
   readonly categories$: Observable<{ count: number, rows: VcCategory[] }>;
   readonly departments$: Observable<VcDepartment[]>;
+  readonly lastFetchAction: string;
+  readonly lastFetchCategoryId: number;
+  readonly lastFetchDepartmentId: number;
 
   abstract addItemToCart(vcItem: VcItem): Observable<any>;
 
@@ -18,12 +21,22 @@ export abstract class VcProductClient {
 
   abstract getAllProducts(limit?: number, page?: number, descriptionLength?: number): Subscription;
 
+  abstract searchProducts(query: string): Subscription;
+
   abstract getProductDetails(productId: number|string): Observable<VcProduct>;
 
   abstract getAllDepartments(): Subscription;
 
   abstract getAllCategories(
     limit?: number, page?: number, descriptionLength?: number
+  ): Subscription;
+
+  abstract getInDepartment(
+    departmentId: number, limit?: number, page?: number, descriptionLength?: number
+  ): Subscription;
+
+  abstract getInCategory(
+    categoryId: number, limit?: number, page?: number, descriptionLength?: number
   ): Subscription;
 
   initClient(): void {

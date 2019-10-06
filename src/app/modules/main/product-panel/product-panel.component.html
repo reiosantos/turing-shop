@@ -11,7 +11,7 @@
     </mat-paginator>
   </div>
 
-  <ng-container *ngFor="let product of convertToCamelCase((vcProductClient.products$|async))">
+  <ng-container *ngFor="let product of convertToCamelCase(vcProductClient.products$|async)">
     <mat-card class="product-card"
               fxFlex.gt-lg="30%"
               fxFlex.lg="30%"
