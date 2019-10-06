@@ -1,3 +1,6 @@
+import { VcAttribute } from '@turing/shared/models/vc-attribute';
+import { VcCategory } from '@turing/shared/models/vc-category';
+
 export class VcProduct {
   productId: number;
   discountedPrice?: string;
@@ -9,4 +12,6 @@ export class VcProduct {
   price?: string;
   thumbnail?: string;
   description?: string;
+  attributes: VcAttribute[];
+  categories: VcCategory[];
 }

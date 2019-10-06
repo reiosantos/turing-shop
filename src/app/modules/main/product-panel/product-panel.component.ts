@@ -1,9 +1,20 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy, ChangeDetectorRef,
+  Component,
+  ComponentFactory,
+  ComponentFactoryResolver,
+  OnInit, ViewContainerRef
+} from '@angular/core';
 import { VcProductClient } from '@turing/shared/interfaces/vc-product-client';
 import { VcProduct } from '@turing/shared/models/vc-product';
 import { ToCamelCasePipe } from '@turing/shared/pipes/to-camel-case/to-camel-case.pipe';
 import { withDestroy } from '@turing/core/mixins/with-destroy';
 import { PageEvent } from '@angular/material';
+import { ComponentType } from '@angular/cdk/overlay';
+import {
+  ProductDetailComponent
+} from '@turing/modules/main/product-detail/product-detail.component';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'vc-product-panel',
@@ -28,10 +39,17 @@ export class ProductPanelComponent extends withDestroy() implements OnInit {
     pageSize: 20
   };
   fetchedData = false;
+  title: string;
+  product: VcProduct;
+  openDialog = false;
+  component: ComponentType<any>;
 
   constructor(
     public vcProductClient: VcProductClient,
-    private toCamelCasePipe: ToCamelCasePipe
+    private toCamelCasePipe: ToCamelCasePipe,
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private viewContainerRef: ViewContainerRef,
+    private cd: ChangeDetectorRef
   ) {
     super();
     this.vcProductClient.initClient();
@@ -40,13 +58,22 @@ export class ProductPanelComponent extends withDestroy() implements OnInit {
   ngOnInit() {
   }
 
-  convertToCamelCase = (products: { count: number; rows: VcProduct[] }): VcProduct[] => {
-    products.rows = products.rows.map((product) => {
-      if (this.images.indexOf(product.thumbnail) === -1) {
-        product.thumbnail = this.getRandomImage();
-      }
-      return product;
-    });
+  randomImage (product: VcProduct) {
+    if (this.images.indexOf(product.thumbnail) === -1) {
+      product.thumbnail = this.getRandomImage();
+    }
+    return product;
+  }
+
+  convertToCamelCase = (products: { count: number; rows: VcProduct[] }|VcProduct): any => {
+
+    if (products instanceof VcProduct || (typeof products === 'object' && !products.rows)) {
+      // @ts-ignore
+      return this.toCamelCasePipe.transform(this.randomImage(products));
+    }
+
+    products.rows = products.rows.map(product => this.randomImage(product));
+
     if (products.count > 1) {
       this.fetchedData = true;
     }
@@ -67,10 +94,25 @@ export class ProductPanelComponent extends withDestroy() implements OnInit {
   }
 
   viewDetails(product: VcProduct) {
-    console.log(product);
+    this.vcProductClient.getProductDetails(product.productId)
+      .pipe(map((value: VcProduct) => this.convertToCamelCase(value)))
+      .subscribe((pdt: VcProduct) => this.openModal(pdt, product.thumbnail));
   }
 
-  addToCart(product: VcProduct) {
-    console.log(product);
+  openModal = (product: VcProduct, previousThumbnail?: string) => {
+    product.thumbnail = previousThumbnail;
+    this.title = product.name;
+    this.product = product;
+    const factory: ComponentFactory<ProductDetailComponent> =
+      this.componentFactoryResolver.resolveComponentFactory(ProductDetailComponent);
+    const component = this.viewContainerRef.createComponent(factory);
+    this.component = component.componentType;
+    this.openDialog = true;
+    this.cd.detectChanges();
+    this.viewContainerRef.remove();
+  };
+
+  hasDiscountedPrice(product: any) {
+    return !!Number.parseInt(product.discountedPrice, 10);
   }
 }

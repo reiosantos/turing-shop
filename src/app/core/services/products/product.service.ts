@@ -3,10 +3,12 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { VcUrls } from '@turing/core/providers/vc-urls';
 import { VcProduct } from '@turing/shared/models/vc-product';
 import { withDestroy } from '@turing/core/mixins/with-destroy';
-import { takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { VcCategory } from '@turing/shared/models/vc-category';
 import { VcDepartment } from '@turing/shared/models/vc-department';
 import { VcProductClient } from '@turing/shared/interfaces/vc-product-client';
+import { VcItem } from '@turing/shared/models/vc-item';
+import { VcCartItem } from '@turing/shared/models/vc-cart-item';
 
 export class ProductService extends withDestroy() implements VcProductClient {
   private products: BehaviorSubject<{ count: number, rows: VcProduct[] }>
@@ -20,6 +22,12 @@ export class ProductService extends withDestroy() implements VcProductClient {
   private departments: BehaviorSubject<VcDepartment[]> = new BehaviorSubject([]);
   departments$: Observable<VcDepartment[]> = this.departments.asObservable();
 
+  private addedInCartItems: BehaviorSubject<VcCartItem[]> = new BehaviorSubject([]);
+  addedInCartItems$: Observable<VcCartItem[]> = this.addedInCartItems.asObservable();
+
+  private cartId: BehaviorSubject<string> = new BehaviorSubject(null);
+  cartId$: Observable<string> = this.cartId.asObservable();
+
   constructor(private vcHttpClient: VcHttpClient) {
     super();
   }
@@ -32,6 +40,11 @@ export class ProductService extends withDestroy() implements VcProductClient {
       .subscribe((products: { count: number, rows: VcProduct[] }) => {
         this.products.next(products);
       });
+  }
+
+  getProductDetails(productId: number|string): Observable<VcProduct> {
+    return this.vcHttpClient.get(VcUrls.getProductDetailUrl(productId))
+      .pipe(takeUntil(this.destroy$));
   }
 
   getAllDepartments(): Subscription {
@@ -52,9 +65,33 @@ export class ProductService extends withDestroy() implements VcProductClient {
       });
   }
 
+  addItemToCart(vcItem: VcItem): Observable<any> {
+    return this.vcHttpClient.post(VcUrls.getAddItemUrl(), {
+      cart_id: vcItem.cartId,
+      product_id: vcItem.productId,
+      quantity: vcItem.quantity,
+      attributes: vcItem.attributes
+    }).pipe(
+      takeUntil(this.destroy$),
+      map((items: VcCartItem[]) => {
+        this.addedInCartItems.next(items);
+        return items;
+      })
+    );
+  }
+
+  generateCartNumber(): Subscription {
+    return this.vcHttpClient.get(VcUrls.generateCartIdUrl())
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((value) => {
+        this.cartId.next(value.cart_id);
+      });
+  }
+
   initClient(): void {
     this.getAllCategories();
     this.getAllDepartments();
     this.getAllProducts();
+    this.generateCartNumber();
   }
 }

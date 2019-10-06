@@ -1,0 +1,49 @@
+<div fxLayout.lt-md="column" fxLayout="row" class="example-card">
+
+  <img [src]="product.thumbnail" alt="Photo of a {{ product.name }}" fxFlex="35%"
+       fxFlex.lt-md="100%" class="img">
+
+  <div fxFlex="65%" fxFlex.lt-md="100%" fxLayout="column" class="content-pane">
+    <span class="name">{{ product.name }}</span>
+    <span class="description">{{ product.description }}</span>
+
+    <form [formGroup]="form" (ngSubmit)="addToCart(product)" fxLayout="column">
+
+      <mat-form-field appearance="standard" fxFlex>
+        <mat-label translate>Quantity</mat-label>
+        <input
+          type="number"
+          matInput
+          min="1"
+          placeholder="Quantity"
+          formControlName="quantity"
+          [class.invalid]="form.get('quantity').invalid"
+          name="quantity"
+        />
+        <mat-hint align="end" translate>NUmber of Items</mat-hint>
+        <mat-error>{{ form.get('attributes').errors }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard" fxFlex>
+        <mat-label translate>Attributes</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="attributes"
+          formControlName="attributes"
+          [class.invalid]="form.get('attributes').invalid"
+          name="attributes"
+        />
+        <mat-hint align="end" translate>Size and color</mat-hint>
+        <mat-error>{{ form.get('attributes').errors }}</mat-error>
+      </mat-form-field>
+
+      <div class="action-buttons" fxLayout="column">
+        <button mat-button mat-raised-button type="submit" class="add">
+          Add To Cart
+        </button>
+        <button mat-button mat-flat-button matDialogClose>Close</button>
+      </div>
+    </form>
+  </div>
+</div>

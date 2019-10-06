@@ -34,18 +34,24 @@
         <div class="footer-text">
           <span>{{ product.name }}</span>
 
-          <span class="current-price">${{ product.price }}</span>
+          <span class="price" [class.strike]="hasDiscountedPrice(product)">
+            ${{ product.price }}
+          </span>
 
-          <span class="discounted-price">${{ product.discountedPrice }}</span>
+          <span *ngIf="hasDiscountedPrice(product)" class="price">
+            ${{ product.discountedPrice }}
+          </span>
         </div>
-        <div class="footer-button">
-          <button mat-raised-button color="primary" (click)="addToCart(product)">
-            Add to cart
-          </button>
-        </div>
+        <div class="footer-button"></div>
       </mat-card-footer>
 
     </mat-card>
   </ng-container>
 
 </div>
+
+<vc-dialog
+  [title]="title"
+  [component]="component"
+  [dataObject]="product"
+  [(openDialog)]="openDialog"></vc-dialog>

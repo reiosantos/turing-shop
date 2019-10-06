@@ -81,13 +81,12 @@
         font-weight: bold;
         margin: .5em auto;
 
-        &.current-price {
+        &.price {
           color: $error;
         }
-
-        &.discounted-price {
-          text-decoration: line-through;
+        &.strike {
           color: $gray;
+          text-decoration: line-through;
         }
       }
     }

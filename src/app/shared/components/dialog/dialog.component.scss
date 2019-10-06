@@ -1,0 +1,8 @@
+@import "~src/assets/styles/variables";
+
+.mat-dialog-container {
+  background: $primary;
+  * {
+    background: transparent;
+  }
+}

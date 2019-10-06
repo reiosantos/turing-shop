@@ -25,6 +25,10 @@ export class VcUrls {
   static getLoginUrl = (): string => `${VcUrls.currentBaseUrl}customers/login`;
   static getCreateAccountUrl = (): string => `${VcUrls.currentBaseUrl}customers`;
 
+  static getProductDetailUrl = (id): string => `${VcUrls.currentBaseUrl}products/${id}`;
+  static getAddItemUrl = (): string => `${VcUrls.currentBaseUrl}shoppingcart/add`;
+  static generateCartIdUrl = (): string => `${VcUrls.currentBaseUrl}shoppingcart/generateUniqueId`;
+
   static getProductsUrl = (query?: {}): string =>
     `${VcUrls.currentBaseUrl}products${VcUrls.formatQuery(query)}`;
 

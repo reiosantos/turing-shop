@@ -6,16 +6,27 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ToCamelCasePipe implements PipeTransform {
 
   private replace = (value: string) => {
-    return value.replace(
+    let ct = value.charAt(0).toLowerCase();
+    const val = value.substr(1);
+    ct = ct + val.replace(
       /([-_][a-zA-Z0-9])/g,
       group => group.toUpperCase().replace('-', '').replace('_', ''));
+    return ct;
   };
 
   private transformObject = (value) => {
     const keys = Object.keys(value);
     keys.forEach((oldKey) => {
       const newKey = this.replace(oldKey);
-      value[newKey] = value[oldKey];
+
+      if (Array.isArray(value[oldKey])) {
+        value[newKey] = this.transformArray(value[oldKey]);
+      } else if (typeof value[oldKey] === 'object') {
+        value[newKey] = this.transformObject(value[oldKey]);
+      } else {
+        value[newKey] = value[oldKey];
+      }
+
       if (newKey !== oldKey) delete value[oldKey];
     });
     return value;

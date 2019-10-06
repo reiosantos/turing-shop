@@ -1,3 +1,5 @@
+@import "~src/assets/styles/variables";
+
 .filter-card {
   width: 240px;
   height: 250px;
@@ -29,6 +31,19 @@
     & {
       width: 210px;
       margin: 1em;
+    }
+  }
+}
+
+.cart-items {
+  color: $primary;
+  ul {
+    list-style: none;
+    li {
+      font-weight: bold;
+      padding: 2px;
+      list-style: none;
+      display: block;
     }
   }
 }
