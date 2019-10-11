@@ -10,17 +10,20 @@ import { FilterPanelComponent } from './main/filter-panel/filter-panel.component
 import { ProductPanelComponent } from './main/product-panel/product-panel.component';
 import { ProductDetailComponent } from './main/product-detail/product-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './main/login/login.component';
 
 @NgModule({
   entryComponents: [
-    ProductDetailComponent
+    ProductDetailComponent,
+    LoginComponent
   ],
   declarations: [
     ToolbarComponent,
     SidebarComponent,
     FilterPanelComponent,
     ProductPanelComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
